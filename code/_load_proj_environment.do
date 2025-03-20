@@ -1,6 +1,7 @@
 * ==============================================================================
 * provision the project environment
 * - use -repado- to set a local project library
+* - use -require- to install project requirements in that library
 * ==============================================================================
 
 * install repkit, if it's missing
@@ -13,6 +14,15 @@ if _rc == 111 {
 * set the location of the project library
 repado, using "${ado}"
 
+* install -require- in the project library
+capture which require
+if _rc == 111 {
+  di as error "{pstd}You need to have {cmd:require} installed to for this project."
+  di as error "{pstd}Click {stata ssc install require} to do so.{p_end}"
+}
+
+* installs requirements in the project library
+require using "${code}/requirements.txt", install
 
 * ==============================================================================
 * load local utility programs
