@@ -1,0 +1,4 @@
+* ssc
+
+* github
+labeller == 1.0, from("https://raw.githubusercontent.com/lsms-worldbank/labeller/v0.5/src")
