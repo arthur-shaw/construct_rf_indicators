@@ -1,11 +1,18 @@
 * ==============================================================================
-* get ado from remote repos
+* provision the project environment
+* - use -repado- to set a local project library
 * ==============================================================================
 
-* TOOD
-* examples: 
-* - install -repkit- target version either globally or locally
-* - use -repkit- to get and project-locally install labeller, selector
+* install repkit, if it's missing
+capture which repkit  
+if _rc == 111 {
+  di as error "{pstd}You need to have {cmd:repkit} installed to for this project."
+  di as error "{pstd}Click {stata ssc install repkit} to do so.{p_end}"
+}
+
+* set the location of the project library
+repado, using "${ado}"
+
 
 * ==============================================================================
 * load local utility programs
