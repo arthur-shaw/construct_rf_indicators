@@ -1,0 +1,6 @@
+# ignore all contents, since it is tracked/set by `_load_proj_environment.do`
+*
+*/*
+
+# but do track the gitignore file itself for sharing
+!.gitignore
