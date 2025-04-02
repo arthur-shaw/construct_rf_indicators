@@ -65,12 +65,27 @@ clonevar cookstove_type = `cookstove_type'
 * access to electricity
 * ==============================================================================
 
-/*
-source_electricity
+* ------------------------------------------------------------------------------
+* access to any source
+* ------------------------------------------------------------------------------
 
-NOTE: do not capture primary source of electricty; can do % per source
+* check that all expected values are present and labelled
+lbl_assert_only_vals_present `electricity_access', vals(1 2)
+lbl_assert_all_vals_labelled `electricity_access'
 
-*/
+* clone variable
+clonevar electricity_access = `electricity_access' == 1
+
+* ------------------------------------------------------------------------------
+* main source
+* ------------------------------------------------------------------------------
+
+* check that all expected values are present and labelled
+lbl_assert_only_vals_present `electricity_main_source', vals(1 2 99)
+lbl_assert_all_vals_labelled `electricity_main_source'
+
+* clone variable
+clonevar electricity_main_source = `electricity_main_source'
 
 * ==============================================================================
 * blackouts in the past 7 days
