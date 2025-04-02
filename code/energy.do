@@ -7,7 +7,7 @@
 * ------------------------------------------------------------------------------
 
 local cookstove_type "s12q2"
-/* local cookstove_location "s12q8" */
+local cookstove_location "s12q8"
 
 local cookstove_injury "s12q28"
 
@@ -43,18 +43,12 @@ clonevar cookstove_type = `cookstove_type'
 * primary cookstove location
 * ==============================================================================
 
-/* 
-
-NOTE: can no longer find the variable for this indicator
-
 * check that all expected values are present and labelled
-lbl_assert_only_vals_present `cookstove_location', vals()
+lbl_assert_only_vals_present `cookstove_location', vals(1 2 3 4 5 6 96)
 lbl_assert_all_vals_labelled `cookstove_location'
 
 * clone variable
 clonevar cookstove_location = `cookstove_location'
-*/
-
 
 * ==============================================================================
 * cookstove injury
