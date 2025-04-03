@@ -16,7 +16,8 @@ local source_electricity "s12q14"
 local blackout_number "s12q24"
 local blackout_duration "s12q25"
 
-
+local elec_avail_24hr "s12q19"
+local elec_avail_evening "s12q20"
 
 * ==============================================================================
 * load and check data
@@ -98,3 +99,22 @@ clonevar blackout_number = `blackout_number'
 * total duration
 confirm_type `blackout_duration', type(numeric)
 clonevar blackout_duration = `blackout_duration'
+
+* ==============================================================================
+* availability
+* ==============================================================================
+
+* check
+confirm_type `elec_avail_24hr', type(numeric)
+confirm_type `elec_avail_evening', type(numeric)
+
+* construct
+* for 24 hours
+clonevar elec_avail_24hr = `elec_avail_24hr'
+* for evening
+* if available for 24 hours, then available for 4 evening hours
+* otherwise, the reported number of hours
+gen elec_avail_evening = .
+replace elec_avail_evening = 4 if (elec_avail_24hr == 24)
+replace elec_avail_evening = `elec_avail_evening' if (elec_avail_24hr < 24)
+
