@@ -19,6 +19,9 @@ local blackout_duration "s12q25"
 local elec_avail_24hr "s12q19"
 local elec_avail_evening "s12q20"
 
+local elec_quality "s12q27"
+
+
 * ==============================================================================
 * load and check data
 * ==============================================================================
@@ -117,4 +120,15 @@ clonevar elec_avail_24hr = `elec_avail_24hr'
 gen elec_avail_evening = .
 replace elec_avail_evening = 4 if (elec_avail_24hr == 24)
 replace elec_avail_evening = `elec_avail_evening' if (elec_avail_24hr < 24)
+
+* ==============================================================================
+* quality
+* ==============================================================================
+
+* check
+lbl_assert_only_vals_present `elec_quality', vals(1 2 -98)
+lbl_assert_all_vals_labelled `elec_quality'
+
+* construct
+clonevar elec_quality = `elec_quality'
 
