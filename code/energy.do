@@ -37,8 +37,29 @@ local elec_safety "s12q28"
 * ingest
 use "${data_clean}", clear
 
+* collect list of variables needed to construct inputs
+#delim ;
+local energy_indicator_input_vars "
+`cookstove_type'
+`cookstove_location'
+`cookstove_injury'
+`source_electricity'
+`blackout_number'
+`blackout_duration'
+`elec_avail_24hr'
+`elec_avail_evening'
+`elec_quality'
+`use_grid_elec'
+`elec_formality'
+`elec_pay_no_one_val'
+`elec_cons_pkg_price'
+`tot_monthly_consump'
+`elec_safety'
+";
+#delim cr;
+
 * check that desired variables are present
-confirm_vars_present `cookstove_type' `cookstove_location'
+confirm_vars_present `energy_indicator_input_vars'
 
 * ==============================================================================
 * primary cookstove type
