@@ -25,6 +25,8 @@ local use_grid_elec "S12_filter1"
 local elec_formality "s12q15"
 local elec_pay_no_one_val "11"
 
+local elec_cons_pkg_price ""
+local tot_monthly_consump ""
 
 * ==============================================================================
 * load and check data
@@ -170,3 +172,45 @@ label define elec_formality 5 "Formality tier 5", modify
 label values elec_formality elec_formality
 label variable elec_formality "Formality of electricity access"
 
+* ==============================================================================
+* affordability
+* ==============================================================================
+
+/*
+PENDING
+
+- Clarification on how / where to get price of standard energy bundle
+- Clarification on how to compute monthly consumption
+- Elaboration of consumption aggregate file
+*/
+
+* ------------------------------------------------------------------------------
+* check inputs
+* ------------------------------------------------------------------------------
+
+* total monthly consumption
+confirm_type `tot_monthly_consump', type(numeric)
+
+* price of standard energy consumption bundle
+capture !mi("`elec_cons_pkg_price'")
+if (_rc != 0 ) {
+  di as error "The value of the energy consumption bundle is missing."
+  error 9
+}
+
+* ------------------------------------------------------------------------------
+* construct
+* ------------------------------------------------------------------------------
+
+* capture components of expressions in macros for reuse
+local five_pct_tot_monthly_cons "(0.05 * `tot_monthly_consump')"
+local tot_monthly_cons_not_miss "!mi(`tot_monthly_consump')"
+
+* construct indicator
+gen elec_affordability = .
+replace elec_affordability = 2 if ///
+  (`five_pct_tot_monthly_cons' < `elec_cons_pkg_price') & ///
+  (`tot_monthly_cons_not_miss')
+replace elec_affordability = 5 if ///
+  (`five_pct_tot_monthly_cons' >= `elec_cons_pkg_price') & ///
+  (`tot_monthly_cons_not_miss')
