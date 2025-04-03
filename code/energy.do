@@ -28,6 +28,8 @@ local elec_pay_no_one_val "11"
 local elec_cons_pkg_price ""
 local tot_monthly_consump ""
 
+local elec_safety "s12q28"
+
 * ==============================================================================
 * load and check data
 * ==============================================================================
@@ -214,3 +216,27 @@ replace elec_affordability = 2 if ///
 replace elec_affordability = 5 if ///
   (`five_pct_tot_monthly_cons' >= `elec_cons_pkg_price') & ///
   (`tot_monthly_cons_not_miss')
+
+* ==============================================================================
+* affordability
+* ==============================================================================
+
+* ------------------------------------------------------------------------------
+* check inputs
+* ------------------------------------------------------------------------------
+
+confirm_type `elec_safety', type(numeric)
+lbl_assert_only_vals_present `elec_safety', vals(1 2 -98)
+lbl_assert_all_vals_labelled `elec_safety'
+
+* ------------------------------------------------------------------------------
+* construct
+* ------------------------------------------------------------------------------
+
+gen elec_safety = .
+replace elec_safety = 0 if (`elec_safety' == 1)
+replace elec_safety = 5 if (`elec_safety' == 1)
+label define elec_safety 0 "Accidents", modify
+label define elec_safety 0 "No accidents", modify
+label values elec_safety elec_safety
+label variable elec_safety "Safety of electricity source"
