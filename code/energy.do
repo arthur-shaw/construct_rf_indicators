@@ -74,33 +74,51 @@ https://documents1.worldbank.org/curated/en/557341633679857128/pdf/Measuring-Ene
 * primary cookstove type
 * ==============================================================================
 
-* check that all expected values are present and labelled
+* ------------------------------------------------------------------------------
+* check
+* ------------------------------------------------------------------------------
+
 lbl_assert_only_vals_present `cookstove_type', vals(1 2 3 4 5 6 96)
 lbl_assert_all_vals_labelled `cookstove_type'
 
-* clone variable
+* ------------------------------------------------------------------------------
+* construct
+* ------------------------------------------------------------------------------
+
 clonevar cookstove_type = `cookstove_type'
 
 * ==============================================================================
 * primary cookstove location
 * ==============================================================================
 
-* check that all expected values are present and labelled
+* ------------------------------------------------------------------------------
+* check
+* ------------------------------------------------------------------------------
+
 lbl_assert_only_vals_present `cookstove_location', vals(1 2 3 4 5 6 96)
 lbl_assert_all_vals_labelled `cookstove_location'
 
-* clone variable
+* ------------------------------------------------------------------------------
+* construct
+* ------------------------------------------------------------------------------
+
 clonevar cookstove_location = `cookstove_location'
 
 * ==============================================================================
 * cookstove injury
 * ==============================================================================
 
-* check that all expected values are present and labelled
+* ------------------------------------------------------------------------------
+* check
+* ------------------------------------------------------------------------------
+
 lbl_assert_only_vals_present `cookstove_injury', vals(1 2 99)
 lbl_assert_all_vals_labelled `cookstove_injury'
 
-* clone variable
+* ------------------------------------------------------------------------------
+* construct
+* ------------------------------------------------------------------------------
+
 clonevar cookstove_type = `cookstove_type'
 
 * ==============================================================================
@@ -111,22 +129,34 @@ clonevar cookstove_type = `cookstove_type'
 * access to any source
 * ------------------------------------------------------------------------------
 
-* check that all expected values are present and labelled
+* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+* check
+* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+
 lbl_assert_only_vals_present `electricity_access', vals(1 2)
 lbl_assert_all_vals_labelled `electricity_access'
 
-* clone variable
+* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+* construct
+* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+
 clonevar electricity_access = `electricity_access' == 1
 
 * ------------------------------------------------------------------------------
 * main source
 * ------------------------------------------------------------------------------
 
-* check that all expected values are present and labelled
+* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+* check
+* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+
 lbl_assert_only_vals_present `electricity_main_source', vals(1 2 99)
 lbl_assert_all_vals_labelled `electricity_main_source'
 
-* clone variable
+* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+* construct
+* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+
 clonevar electricity_main_source = `electricity_main_source'
 
 * ==============================================================================
@@ -145,13 +175,20 @@ clonevar blackout_duration = `blackout_duration'
 * availability
 * ==============================================================================
 
+* ------------------------------------------------------------------------------
 * check
+* ------------------------------------------------------------------------------
+
 confirm_type `elec_avail_24hr', type(numeric)
 confirm_type `elec_avail_evening', type(numeric)
 
+* ------------------------------------------------------------------------------
 * construct
+* ------------------------------------------------------------------------------
+
 * for 24 hours
 clonevar elec_avail_24hr = `elec_avail_24hr'
+
 * for evening
 * if available for 24 hours, then available for 4 evening hours
 * otherwise, the reported number of hours
@@ -163,22 +200,34 @@ replace elec_avail_evening = `elec_avail_evening' if (elec_avail_24hr < 24)
 * quality
 * ==============================================================================
 
+* ------------------------------------------------------------------------------
 * check
+* ------------------------------------------------------------------------------
+
 lbl_assert_only_vals_present `elec_quality', vals(1 2 -98)
 lbl_assert_all_vals_labelled `elec_quality'
 
+* ------------------------------------------------------------------------------
 * construct
+* ------------------------------------------------------------------------------
+
 clonevar elec_quality = `elec_quality'
 
 * ==============================================================================
 * formality
 * ==============================================================================
 
+* ------------------------------------------------------------------------------
 * check
+* ------------------------------------------------------------------------------
+
 lbl_assert_only_vals_present `elec_formality', vals(0 1 2 3 4 5 6 7 8 9 10 96)
 lbl_assert_all_vals_labelled `elec_formality'
 
+* ------------------------------------------------------------------------------
 * construct
+* ------------------------------------------------------------------------------
+
 gen elec_formality = .
 replace elec_formality = 3 if (
   use_grid_elec == 1 & ///
@@ -188,6 +237,7 @@ replace elec_formality = 5 if ( ///
   use_grid_elec == 1 & ///
   (`elec_formality' != `elec_pay_no_one_val') & !mi(`elec_formality') ///
 )
+
 /*
 TODOs:
 1. See if it makes sense to have labelled values that cannot occur.
@@ -195,6 +245,7 @@ Only tiers 3 and 5 appear possible. See also Rwanda code.
 2. Consider changing labels to match graphic of "formal" and "informal" access.
 See figure 23 in Ethiopia report
 */
+
 label define elec_formality 0 "Formality tier 0", modify
 label define elec_formality 1 "Formality tier 1", modify
 label define elec_formality 2 "Formality tier 2", modify
