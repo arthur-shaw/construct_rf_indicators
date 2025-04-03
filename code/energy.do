@@ -62,6 +62,15 @@ local energy_indicator_input_vars "
 confirm_vars_present `energy_indicator_input_vars'
 
 * ==============================================================================
+* documentation
+* ==============================================================================
+
+/*
+Indicators contructed in line with guidance in energy guidebook:
+https://documents1.worldbank.org/curated/en/557341633679857128/pdf/Measuring-Energy-Access-A-Guide-to-Collecting-Data-Using-the-Core-Questions-on-Household-Energy-Use.pdf
+*/
+
+* ==============================================================================
 * primary cookstove type
 * ==============================================================================
 
