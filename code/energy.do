@@ -11,6 +11,7 @@ local cookstove_location "s12q8"
 
 local cookstove_injury "s12q28"
 
+local elec_access "s12q13"
 local source_electricity "s12q14"
 
 local blackout_number "s12q24"
@@ -43,6 +44,7 @@ local energy_indicator_input_vars "
 `cookstove_type'
 `cookstove_location'
 `cookstove_injury'
+`elec_access'
 `source_electricity'
 `blackout_number'
 `blackout_duration'
@@ -133,14 +135,14 @@ clonevar cookstove_type = `cookstove_type'
 * check
 * - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
 
-lbl_assert_only_vals_present `electricity_access', vals(1 2)
-lbl_assert_all_vals_labelled `electricity_access'
+lbl_assert_only_vals_present `elec_access', vals(1 2)
+lbl_assert_all_vals_labelled `elec_access'
 
 * - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
 * construct
 * - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
 
-clonevar electricity_access = `electricity_access' == 1
+clonevar elec_access = `elec_access' == 1
 
 * ------------------------------------------------------------------------------
 * main source
