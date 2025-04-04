@@ -26,7 +26,7 @@ use "${data_clean}", clear
 
 * collect list of variables needed to construct inputs
 #delim ;
-`wash_indicator_input_vars'
+local wash_indicator_input_vars "
 `toilet_type'
 `drinking_water'
 `water_collection_time'
