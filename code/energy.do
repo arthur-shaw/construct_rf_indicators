@@ -323,3 +323,41 @@ label define elec_safety 0 "Accidents", modify
 label define elec_safety 0 "No accidents", modify
 label values elec_safety elec_safety
 label variable elec_safety "Safety of electricity source"
+
+* ==============================================================================
+* save indicators
+* ==============================================================================
+
+* ------------------------------------------------------------------------------
+* keep only necessary variables
+* ------------------------------------------------------------------------------
+
+#delim ;
+local energy_indicators "
+cookstove_type
+cookstove_location
+cookstove_injury
+elec_access
+source_electricity
+blackout_number
+blackout_duration
+elec_avail_24hr
+elec_avail_evening
+elec_quality
+use_grid_elec
+elec_formality
+elec_pay_no_one_val
+elec_cons_pkg_price
+tot_monthly_consump
+elec_safety
+";
+#delim cr;
+
+keep ${hhid} `energy_indicators'
+
+* ------------------------------------------------------------------------------
+* save data
+* ------------------------------------------------------------------------------
+
+label data "Energy indicators"
+save "${data_clean}/energy.dta", replace
