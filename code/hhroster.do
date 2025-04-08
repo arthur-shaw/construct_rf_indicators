@@ -93,34 +93,16 @@ gen dependent = ( ///
 * check
 * - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
 
-local vals "1 2 3 4 5 6 7"
-
 confirm_type `marital', type(numeric)
-lbl_assert_only_vals_present `marital', vals(`vals')
+lbl_assert_only_vals_present `marital', vals(1 2 3 4 5 6 7)
 lbl_assert_all_vals_labelled `marital'
 
 * - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
 * construct
 * - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
 
-gen age12 = (`member_age' >= 12)
-
-local names "married_mono married_poly inform_union divorced separated widowed never_married"
-local lbls `" "Married (Mono)" "Married (Polygamous)" "Informal union" "Divorced" "Separated" "Widowed" "Never Married" "'
-local n: word count `vals'
-
-forvalues i = 1/`n' {
-
-  * extract the ith element
-  local val : word `i' of `vals'
-  local name : word `i' of `names'
-  local lbl : word `i' of `lbls'
-  
-  * create dummy
-  gen n_`name' = (`marital' == `val' & age12 == 1)
-  label variable n_`name' "`lbl'"
-
-}
+clonevar marital_status = `marital_status'
+label variable "Marital status"
 
 * ------------------------------------------------------------------------------
 * registered birth
