@@ -21,7 +21,7 @@ local access_internet_member "s5q6"
 * 🏠 in household-level data
 * - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
 
-local access_internet_hhold
+local access_internet_hhold "s11q19"
 
 * ==============================================================================
 * 🧑‍🤝‍🧑 create person-level attributes
