@@ -47,7 +47,7 @@ confirm_vars_present `functioning_indicator_input_vars'
 * check
 * - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
 
-local difficulties "seeing yearing movement cognitive care communication"
+local difficulties "seeing hearing movement cognitive care communication"
 
 foreach difficulty of local difficulties {
 
