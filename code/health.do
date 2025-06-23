@@ -20,7 +20,7 @@ local hospitalized "s3q24"
 * ------------------------------------------------------------------------------
 
 * ingest
-use "${data_clean}", clear
+use "${data_clean}"/${member_lvl_data}, clear
 
 * collect list of variables needed to construct inputs
 delim ;

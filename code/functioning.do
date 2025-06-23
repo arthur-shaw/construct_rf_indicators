@@ -18,7 +18,7 @@ local difficulty_communication "s3cq6"
 * ------------------------------------------------------------------------------
 
 * ingest
-use "${data_clean}", clear
+use "${data_clean}"/${member_lvl_data}, clear
 
 * collect list of variables needed to construct inputs
 delim ;

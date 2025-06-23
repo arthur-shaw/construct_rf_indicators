@@ -32,7 +32,7 @@ local access_internet_hhold "s11q19"
 * ------------------------------------------------------------------------------
 
 * ingest
-use "${data_clean}"/${persons_lvl_data}, clear
+use "${data_clean}"/${member_lvl_data}, clear
 
 * collect list of variables needed to construct inputs
 delim ;
