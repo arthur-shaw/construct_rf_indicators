@@ -23,7 +23,7 @@ local wall_material "s11q15"
 * ------------------------------------------------------------------------------
 
 * ingest
-use "${data_clean}", clear
+use "${data_clean}/${hhold_lvl_data}", clear
 
 * collect list of variables needed to construct inputs
 #delim ;

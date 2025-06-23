@@ -22,7 +22,7 @@ local refuse_disposal_type "s13q19"
 * ------------------------------------------------------------------------------
 
 * ingest
-use "${data_clean}", clear
+use "${data_clean}/${hhold_lvl_data}", clear
 
 * collect list of variables needed to construct inputs
 #delim ;
