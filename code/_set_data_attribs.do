@@ -11,5 +11,5 @@ global biz_lvl_data       "r_business.dta"
 * ==============================================================================
 
 global hhid "interview__id"
-global member_id = ustrregexrf("${member_lvl_data}", "\.dta", "__id")
+global person_id = ustrregexrf("${member_lvl_data}", "\.dta", "__id")
 global biz_id = ustrregexrf("${biz_lvl_data}", "\.dta", "__id")
