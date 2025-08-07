@@ -158,6 +158,8 @@ lbl_assert_all_vals_labelled `birth_registered'
 
 gen birth_registered = (`birth_registered' == 1)
 label variable birth_registered "Birth registered with civil authorities/registrar"
+label define birth_registered 1 "Yes" 0 "No", modify
+label values birth_registered birth_registered
 
 * ==============================================================================
 * create data sets of indicators/attributes
