@@ -42,7 +42,7 @@ confirm_vars_present `hhroster_indicator_input_vars'
 * ------------------------------------------------------------------------------
 
 gen hhsize = .
-replace hhsize = 1 if (!mi($(person_id)))
+replace hhsize = 1 if (!mi(${person_id}))
 label variable hhsize "Household size"
 
 * ------------------------------------------------------------------------------
