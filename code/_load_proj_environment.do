@@ -12,7 +12,7 @@ if _rc == 111 {
 }
 
 * set the location of the project library
-repado, using "${ado}"
+capture repado using "${ado}"
 
 * install -require- in the project library
 capture which require
