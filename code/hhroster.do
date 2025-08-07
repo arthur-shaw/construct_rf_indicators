@@ -141,7 +141,7 @@ keep ${hhid} ${person_id} member_gender relationship_to_head member_age ///
   marital_status birth_registered
 
 label data "Demographic indicators"
-save "${data_clean}/hhroster.dta", replace
+save "${data_constructed}/hhroster.dta", replace
 
 * ------------------------------------------------------------------------------
 * household-level aggregates
@@ -156,4 +156,4 @@ collapse (count) hhsize, by(${hhid})
 keep ${hhid} hhsize
 
 label data "Household size"
-save "${data_clean}/hhsize.dta", replace
+save "${data_constructed}/hhsize.dta", replace
