@@ -17,7 +17,7 @@ local birth_registered "s1q6"
 * ------------------------------------------------------------------------------
 
 * ingest
-use "${data_clean}"/${member_lvl_data}, clear
+use "${data_clean}/${member_lvl_data}", clear
 
 * collect list of variables needed to construct inputs
 delim ;
