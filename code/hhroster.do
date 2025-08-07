@@ -189,6 +189,7 @@ use "`hhroster'", clear
 
 * create count by household
 collapse (count) hhsize, by(${hhid})
+label variable hhsize "Household size"
 
 * keep only constructed indicator
 keep ${hhid} hhsize
