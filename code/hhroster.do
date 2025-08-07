@@ -138,7 +138,7 @@ lbl_assert_all_vals_labelled `marital_status'
 * - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
 
 clonevar marital_status = `marital_status'
-label variable "Marital status"
+label variable marital_status "Marital status"
 
 * ------------------------------------------------------------------------------
 * registered birth
