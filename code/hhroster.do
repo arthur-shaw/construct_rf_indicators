@@ -166,13 +166,13 @@ label values birth_registered birth_registered
 * ==============================================================================
 
 tempfile hhroster
-save "`tempfile'", replace
+save "`hhroster'", replace
 
 * ------------------------------------------------------------------------------
 * individual-level data
 * ------------------------------------------------------------------------------
 
-use "`tempfile'", clear
+use "`hhroster'", clear
 
 * keep constructed indicators/attributes
 keep ${hhid} ${person_id} gender relationship age ///
@@ -185,7 +185,7 @@ save "${data_constructed}/hhroster.dta", replace
 * household-level aggregates
 * ------------------------------------------------------------------------------
 
-use "`tempfile'", clear
+use "`hhroster'", clear
 
 * create count by household
 collapse (count) hhsize, by(${hhid})
