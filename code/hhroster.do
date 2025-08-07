@@ -6,9 +6,9 @@
 * set variables
 * ------------------------------------------------------------------------------
 
-local member_gender "s1q2"
-local relationship_to_head "s1q3"
-local member_age "s1q4alt"
+local gender "s1q2"
+local relationship "s1q3"
+local age "s1q4alt"
 local marital_status "s1q7"
 local birth_registered "s1q6"
 
@@ -22,9 +22,9 @@ use "${data_clean}/${member_lvl_data}", clear
 * collect list of variables needed to construct inputs
 #delim ;
 local hhroster_indicator_input_vars "
-`member_gender'
-`relationship_to_head'
-`member_age'
+`gender'
+`relationship'
+`age'
 `marital_status'
 `birth_registered'
 ";
@@ -53,16 +53,16 @@ label variable hhsize "Household size"
 * check
 * - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
 
-confirm_type `member_gender', type(numeric)
-lbl_assert_only_vals_present `member_gender', vals(1 2)
-lbl_assert_all_vals_labelled `member_gender'
+confirm_type `gender', type(numeric)
+lbl_assert_only_vals_present `gender', vals(1 2)
+lbl_assert_all_vals_labelled `gender'
 
 * - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
 * construct
 * - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
 
-clonevar member_gender = `member_gender'
-label variable member_gender "Gender"
+clonevar gender = `gender'
+label variable gender "Gender"
 
 * ------------------------------------------------------------------------------
 * dependent
@@ -73,7 +73,7 @@ label variable member_gender "Gender"
 * - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
 
 * age is numeric
-confirm_type `member_age', type(numeric)
+confirm_type `age', type(numeric)
 
 * - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
 * construct
@@ -81,8 +81,8 @@ confirm_type `member_age', type(numeric)
 
 * those ages zero to 14 years or 65 years and older
 gen dependent = ( ///
-  (inrange(`member_age', 0, 14)) | /// between 0 and 14
-  (`member_age' >= 65 & !mi(`member_age')) /// or above 65, excluding missing
+  (inrange(`age', 0, 14)) | /// between 0 and 14
+  (`age' >= 65 & !mi(`age')) /// or above 65, excluding missing
 )
 
 * ------------------------------------------------------------------------------
@@ -93,9 +93,9 @@ gen dependent = ( ///
 * check
 * - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
 
-confirm_type `marital', type(numeric)
-lbl_assert_only_vals_present `marital', vals(1 2 3 4 5 6 7)
-lbl_assert_all_vals_labelled `marital'
+confirm_type `marital_status', type(numeric)
+lbl_assert_only_vals_present `marital_status', vals(1 2 3 4 5 6 7)
+lbl_assert_all_vals_labelled `marital_status'
 
 * - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
 * construct
@@ -137,7 +137,7 @@ save "`tempfile'", replace
 use "`tempfile'", clear
 
 * keep constructed indicators/attributes
-keep ${hhid} ${person_id} member_gender relationship_to_head member_age ///
+keep ${hhid} ${person_id} gender relationship age ///
   marital_status birth_registered
 
 label data "Demographic indicators"
