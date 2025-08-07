@@ -10,7 +10,7 @@ global proj_root "C:/Users/WB393438/resilient_futures/construct_rf_indicators"
 do "${proj_root}/code/_set_paths.do"
 
 * set data attributes: names and ID variables
-do "${proj_root}/code/_set_data_attributes.do"
+do "${proj_root}/code/_set_data_attribs.do"
 
 * load project dependencies
 do "${code}/_load_proj_environment.do"
