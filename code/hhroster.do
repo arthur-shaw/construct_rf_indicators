@@ -20,7 +20,7 @@ local birth_registered "s1q6"
 use "${data_clean}/${member_lvl_data}", clear
 
 * collect list of variables needed to construct inputs
-delim ;
+#delim ;
 local hhroster_indicator_input_vars "
 `member_gender'
 `relationship_to_head'
